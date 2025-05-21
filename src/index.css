@@ -5,11 +5,11 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
+    --background: 0 0% 0%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 0 0% 3%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 0 0% 3%;
     --popover-foreground: 0 0% 98%;
     --primary: 252 80% 75%;
     --primary-foreground: 240 5.9% 10%;
@@ -33,7 +33,7 @@
     @apply border-border selection:bg-robotics-purple/30;
   }
   body {
-    @apply bg-robotics-dark text-foreground antialiased;
+    @apply bg-black text-foreground antialiased;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -55,7 +55,7 @@
 
 @layer components {
   .card-gradient {
-    @apply bg-gradient-to-br from-robotics-darker to-robotics-dark border border-robotics-gray/10;
+    @apply bg-gradient-to-br from-black to-dark-gray border border-gray-800/20;
   }
   
   .stat-card {

@@ -19,14 +19,14 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-robotics-darker/80 backdrop-blur-md border-b border-robotics-gray/10">
+    <header className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800/20">
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <a href="#" className="flex items-center space-x-2">
-            <div className="h-8 w-8 bg-robotics-purple rounded-md flex items-center justify-center">
-              <span className="text-robotics-dark font-bold text-xl">R</span>
+            <div className="h-10 w-10 bg-robotics-purple rounded flex items-center justify-center">
+              <span className="text-black font-bold text-xl">A</span>
             </div>
-            <span className="text-xl font-bold text-white">RoboNex</span>
+            <span className="text-xl font-bold text-white">ASRS</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -35,7 +35,7 @@ const Header = () => {
               <a 
                 key={item.title} 
                 href={item.href}
-                className="text-robotics-gray-light hover:text-robotics-purple transition-colors"
+                className="text-gray-300 hover:text-robotics-purple transition-colors"
               >
                 {item.title}
               </a>
@@ -60,13 +60,13 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-robotics-darker border-t border-robotics-gray/10 py-4">
+        <div className="md:hidden bg-dark-gray border-t border-gray-800/20 py-4">
           <nav className="flex flex-col space-y-4 px-6">
             {menuItems.map((item) => (
               <a 
                 key={item.title} 
                 href={item.href} 
-                className="text-robotics-gray-light hover:text-robotics-purple transition-colors"
+                className="text-gray-300 hover:text-robotics-purple transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.title}
