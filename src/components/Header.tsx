@@ -19,14 +19,15 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800/20">
+    <header className="fixed top-0 left-0 w-full z-50 bg-transparent border-white/30"
+>
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <a href="#" className="flex items-center space-x-2">
             <div className="h-10 w-10 bg-theme-blue rounded flex items-center justify-center">
-              <span className="text-black font-bold text-xl">A</span>
+              <span className="text-black font-bold text-xl">S</span>
             </div>
-            <span className="text-xl font-bold text-white">ASRS</span>
+            <span className="text-xl font-bold text-white">Seven Robotics</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -35,7 +36,7 @@ const Header = () => {
               <a 
                 key={item.title} 
                 href={item.href}
-                className="text-gray-300 hover:text-theme-blue transition-colors"
+                className="text-white hover:text-theme-blue transition-colors"
               >
                 {item.title}
               </a>
