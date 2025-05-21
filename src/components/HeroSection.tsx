@@ -16,7 +16,7 @@ const HeroSection = () => {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="https://res.cloudinary.com/drt56ija4/video/upload/v1747826997/vzetap0cshemshqwiycw.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/drt56ija4/video/upload/v1747829397/spot_sabx6w.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         {/* Dark overlay for better text visibility */}
