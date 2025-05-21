@@ -23,7 +23,7 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <a href="#" className="flex items-center space-x-2">
-            <div className="h-10 w-10 bg-robotics-purple rounded flex items-center justify-center">
+            <div className="h-10 w-10 bg-theme-blue rounded flex items-center justify-center">
               <span className="text-black font-bold text-xl">A</span>
             </div>
             <span className="text-xl font-bold text-white">ASRS</span>
@@ -35,7 +35,7 @@ const Header = () => {
               <a 
                 key={item.title} 
                 href={item.href}
-                className="text-gray-300 hover:text-robotics-purple transition-colors"
+                className="text-gray-300 hover:text-theme-blue transition-colors"
               >
                 {item.title}
               </a>
@@ -43,7 +43,7 @@ const Header = () => {
           </nav>
 
           <div className="hidden md:block">
-            <Button className="bg-robotics-purple hover:bg-robotics-purple-light text-white">
+            <Button className="bg-theme-blue hover:bg-theme-blue-light text-white">
               Get a Demo
             </Button>
           </div>
@@ -66,13 +66,13 @@ const Header = () => {
               <a 
                 key={item.title} 
                 href={item.href} 
-                className="text-gray-300 hover:text-robotics-purple transition-colors"
+                className="text-gray-300 hover:text-theme-blue transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.title}
               </a>
             ))}
-            <Button className="bg-robotics-purple hover:bg-robotics-purple-light text-white w-full">
+            <Button className="bg-theme-blue hover:bg-theme-blue-light text-white w-full">
               Get a Demo
             </Button>
           </nav>

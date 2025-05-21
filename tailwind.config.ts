@@ -19,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+				display: ['Montserrat', 'Inter', 'system-ui', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -63,14 +67,10 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				robotics: {
-					dark: '#1A1F2C',
-					darker: '#141821',
-					purple: '#9b87f5',
-					'purple-light': '#b3a4f7',
-					'purple-dark': '#7E69AB',
-					gray: '#8E9196',
-					'gray-light': '#c8c8c9'
+				theme: {
+					blue: '#1EAEDB',
+					'blue-light': '#33c3f0',
+					'blue-dark': '#0b96c0',
 				},
 				black: '#000000',
 				'dark-gray': '#121212',
