@@ -115,7 +115,7 @@ const SoftwareSupport = () => {
                     <h3 className="text-white font-semibold mb-2">Service Level Agreement</h3>
                     <ul className="text-gray-300 text-sm space-y-1">
                       <li>• 99.9% uptime guarantee</li>
-                      <li>• <4 hour response time for critical issues</li>
+                      <li>• &lt;4 hour response time for critical issues</li>
                       <li>• Dedicated support team assignment</li>
                       <li>• Regular health checks and updates</li>
                     </ul>
