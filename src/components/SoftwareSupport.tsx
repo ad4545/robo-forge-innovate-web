@@ -38,17 +38,17 @@ const SoftwareSupport = () => {
         <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
           {/* Support Services */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
               Professional Support Services
             </h2>
-            <p className="text-gray-300 mb-8">
+            <p className="text-gray-300 mb-8 font-sans leading-relaxed">
               Get the most out of your automation investment with our comprehensive 
               support services and expert guidance.
             </p>
 
             <div className="space-y-6">
               {supportOptions.map((option, index) => (
-                <Card key={index} className="bg-black border-gray-800/20">
+                <Card key={index} className="bg-black border-gray-800/20 hover:border-theme-blue/30 transition-all duration-300">
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
                       <div className="p-2 bg-theme-blue/10 rounded-lg">
@@ -56,12 +56,12 @@ const SoftwareSupport = () => {
                       </div>
                       <div className="flex-grow">
                         <div className="flex justify-between items-center mb-2">
-                          <h3 className="text-lg font-semibold text-white">{option.title}</h3>
-                          <span className="text-xs text-theme-blue bg-theme-blue/10 px-2 py-1 rounded">
+                          <h3 className="text-lg font-display font-semibold text-white">{option.title}</h3>
+                          <span className="text-xs text-theme-blue bg-theme-blue/10 px-2 py-1 rounded font-medium">
                             {option.availability}
                           </span>
                         </div>
-                        <p className="text-gray-400 text-sm">{option.description}</p>
+                        <p className="text-gray-400 text-sm font-sans leading-relaxed">{option.description}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -70,11 +70,11 @@ const SoftwareSupport = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
-              <Button className="bg-theme-blue hover:bg-theme-blue-light text-white">
+              <Button className="bg-theme-blue hover:bg-theme-blue-light text-white font-display">
                 <Phone className="h-4 w-4 mr-2" />
                 Contact Support
               </Button>
-              <Button variant="outline" className="border-theme-blue text-theme-blue hover:bg-theme-blue/10">
+              <Button variant="outline" className="border-theme-blue text-theme-blue hover:bg-theme-blue/10 font-display">
                 <Mail className="h-4 w-4 mr-2" />
                 Schedule Training
               </Button>
@@ -83,41 +83,53 @@ const SoftwareSupport = () => {
 
           {/* Certifications & Compliance */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
               Certifications & Compliance
             </h2>
-            <p className="text-gray-300 mb-8">
+            <p className="text-gray-300 mb-8 font-sans leading-relaxed">
               Our software meets the highest industry standards for safety, 
               security, and quality in industrial automation.
             </p>
 
             <div className="grid grid-cols-2 gap-4 mb-8">
               {certifications.map((cert, index) => (
-                <Card key={index} className="bg-black border-gray-800/20 hover:border-theme-blue/30 transition-all">
+                <Card key={index} className="bg-black border-gray-800/20 hover:border-theme-blue/30 transition-all duration-300">
                   <CardContent className="p-6 text-center">
                     <div className="p-3 bg-theme-blue/10 rounded-lg inline-block mb-4">
                       <Award className="h-6 w-6 text-theme-blue" />
                     </div>
-                    <h3 className="text-white font-semibold mb-2">{cert.name}</h3>
-                    <p className="text-gray-400 text-sm">{cert.description}</p>
+                    <h3 className="text-white font-display font-semibold mb-2">{cert.name}</h3>
+                    <p className="text-gray-400 text-sm font-sans">{cert.description}</p>
                   </CardContent>
                 </Card>
               ))}
             </div>
 
-            <Card className="bg-theme-blue/5 border-theme-blue/20">
+            <Card className="bg-theme-blue/5 border-theme-blue/20 hover:border-theme-blue/40 transition-all duration-300">
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
                   <div className="p-2 bg-theme-blue/10 rounded-lg">
                     <Clock className="h-6 w-6 text-theme-blue" />
                   </div>
                   <div>
-                    <h3 className="text-white font-semibold mb-2">Service Level Agreement</h3>
-                    <ul className="text-gray-300 text-sm space-y-1">
-                      <li>• 99.9% uptime guarantee</li>
-                      <li>• &lt;4 hour response time for critical issues</li>
-                      <li>• Dedicated support team assignment</li>
-                      <li>• Regular health checks and updates</li>
+                    <h3 className="text-white font-display font-semibold mb-3">Service Level Agreement</h3>
+                    <ul className="text-gray-300 text-sm space-y-2 font-sans">
+                      <li className="flex items-center">
+                        <span className="w-2 h-2 bg-theme-blue rounded-full mr-3 flex-shrink-0"></span>
+                        99.9% uptime guarantee
+                      </li>
+                      <li className="flex items-center">
+                        <span className="w-2 h-2 bg-theme-blue rounded-full mr-3 flex-shrink-0"></span>
+                        &lt;4 hour response time for critical issues
+                      </li>
+                      <li className="flex items-center">
+                        <span className="w-2 h-2 bg-theme-blue rounded-full mr-3 flex-shrink-0"></span>
+                        Dedicated support team assignment
+                      </li>
+                      <li className="flex items-center">
+                        <span className="w-2 h-2 bg-theme-blue rounded-full mr-3 flex-shrink-0"></span>
+                        Regular health checks and updates
+                      </li>
                     </ul>
                   </div>
                 </div>
