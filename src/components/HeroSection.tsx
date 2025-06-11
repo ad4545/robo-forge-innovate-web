@@ -6,31 +6,14 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center pt-28 pb-20 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center pt-28 pb-20 relative overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black"
     >
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4" />
-          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        {/* Dark overlay for better text visibility */}
-        <div className="absolute inset-0 bg-black/60 z-10"></div>
-      </div>
-
-      {/* Background elements - keeping subtle effects on top of video */}
-      <div className="absolute inset-0 grid-bg opacity-5 z-20"></div>
-      <div className="absolute -top-40 -right-40 w-96 h-96 bg-theme-blue/10 rounded-full blur-3xl z-20"></div>
-      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-theme-blue/10 rounded-full blur-3xl z-20"></div>
+      {/* Background elements */}
+      <div className="absolute inset-0 grid-bg opacity-5 z-10"></div>
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-theme-blue/10 rounded-full blur-3xl z-10"></div>
+      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-theme-blue/10 rounded-full blur-3xl z-10"></div>
       
-      <div className="container mx-auto px-4 relative z-30">
+      <div className="container mx-auto px-4 relative z-20">
         <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter animate-fade-in">
             <span className="text-white">ASRS</span> - <span className="text-theme-blue">The future is here</span>
