@@ -1,19 +1,26 @@
 
-import { useState } from "react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Battery, Shield, Settings } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Battery, Shield, Settings, ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const AccordionShowcase = () => {
-  const [activeItem, setActiveItem] = useState("autonomous-charging");
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [api, setApi] = useState<any>();
 
-  const accordionData = [
+  const carouselData = [
     {
       id: "autonomous-charging",
       title: "Autonomous Charging",
       icon: Battery,
       description: "Self-managing power systems for continuous operation",
       content: "Our AMR systems feature intelligent autonomous charging capabilities that ensure uninterrupted warehouse operations. Robots automatically navigate to charging stations when battery levels are low, optimizing uptime and maintaining peak productivity throughout your facility.",
-      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      features: [
+        "Automatic battery level monitoring",
+        "Smart charging station navigation", 
+        "Optimized charging schedules"
+      ]
     },
     {
       id: "safety-assurance",
@@ -21,7 +28,12 @@ const AccordionShowcase = () => {
       icon: Shield,
       description: "Advanced safety protocols protecting workforce and inventory",
       content: "Industry-leading safety systems with 360° environmental awareness, collision avoidance technology, and emergency stop protocols. Our AMR solutions prioritize human safety while maintaining operational efficiency in dynamic warehouse environments.",
-      videoUrl: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4"
+      videoUrl: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+      features: [
+        "360° obstacle detection",
+        "Emergency stop protocols",
+        "Human-robot collaboration safety"
+      ]
     },
     {
       id: "controller",
@@ -29,12 +41,31 @@ const AccordionShowcase = () => {
       icon: Settings,
       description: "Centralized control system for fleet management",
       content: "Sophisticated fleet management through our intelligent controller system. Monitor, control, and optimize your entire AMR fleet from a single interface, with real-time analytics, predictive maintenance alerts, and seamless integration capabilities.",
-      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      features: [
+        "Real-time fleet monitoring",
+        "Predictive maintenance alerts",
+        "Advanced analytics dashboard"
+      ]
     }
   ];
 
+  useEffect(() => {
+    if (!api) return;
+
+    api.on("select", () => {
+      setCurrentSlide(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  const goToSlide = (index: number) => {
+    if (api) {
+      api.scrollTo(index);
+    }
+  };
+
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
+    <section className="py-20 bg-gradient-to-b from-gray-900 to-black overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -45,130 +76,133 @@ const AccordionShowcase = () => {
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
-          <Accordion 
-            type="single" 
-            value={activeItem} 
-            onValueChange={setActiveItem}
-            className="space-y-4"
+        <div className="max-w-7xl mx-auto">
+          <Carousel 
+            setApi={setApi}
+            className="w-full animate-fade-in" 
+            style={{ animationDelay: '0.3s' }}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
           >
-            {accordionData.map((item, index) => (
-              <AccordionItem
-                key={item.id}
-                value={item.id}
-                className="border border-gray-800/30 rounded-2xl overflow-hidden bg-gray-900/20 backdrop-blur-sm hover:border-theme-blue/30 transition-all duration-500 animate-fade-in"
-                style={{ animationDelay: `${0.6 + index * 0.2}s` }}
-              >
-                <AccordionTrigger className="px-8 py-6 hover:no-underline group">
-                  <div className="flex items-center gap-6 text-left w-full">
-                    <div className="bg-theme-blue/10 p-4 rounded-xl group-hover:bg-theme-blue/20 transition-all duration-300">
-                      <item.icon className="text-theme-blue w-8 h-8" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl md:text-2xl font-semibold text-white mb-2 group-hover:text-theme-blue transition-colors duration-300">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-400 text-sm md:text-base">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </AccordionTrigger>
-                
-                <AccordionContent className="px-8 pb-8">
-                  <div className="grid lg:grid-cols-2 gap-8 items-center">
-                    {/* Video Section */}
-                    <div className="relative rounded-xl overflow-hidden shadow-2xl shadow-theme-blue/10 group order-2 lg:order-1">
-                      <video
-                        className="w-full h-[300px] md:h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
-                        autoPlay
-                        loop
-                        muted
-                        poster="/placeholder.svg"
-                      >
-                        <source src={item.videoUrl} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                      
-                      {/* Video Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70"></div>
-                      
-                      {/* Video Title Overlay */}
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <div className="bg-black/60 backdrop-blur-sm rounded-lg p-4">
-                          <h4 className="text-white font-semibold text-lg mb-1">{item.title} in Action</h4>
-                          <p className="text-gray-300 text-sm">Real-world implementation showcase</p>
+            <CarouselContent>
+              {carouselData.map((item, index) => (
+                <CarouselItem key={item.id} className="pl-4">
+                  <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-theme-blue/20 group min-h-[600px]">
+                    {/* Video Background */}
+                    <video
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      autoPlay
+                      loop
+                      muted
+                      poster="/placeholder.svg"
+                    >
+                      <source src={item.videoUrl} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    
+                    {/* Translucent Overlay */}
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] transition-opacity duration-500 group-hover:bg-black/50"></div>
+                    
+                    {/* Content Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center p-8">
+                      <div className="max-w-4xl w-full grid lg:grid-cols-2 gap-8 items-center">
+                        {/* Text Content */}
+                        <div className="text-white space-y-6 transform transition-all duration-700 translate-y-0 group-hover:-translate-y-2">
+                          <div className="flex items-center gap-4 mb-6">
+                            <div className="bg-theme-blue/20 p-4 rounded-xl backdrop-blur-sm border border-theme-blue/30">
+                              <item.icon className="text-theme-blue w-8 h-8" />
+                            </div>
+                            <div>
+                              <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                                {item.title}
+                              </h3>
+                              <p className="text-theme-blue text-sm md:text-base font-medium">
+                                {item.description}
+                              </p>
+                            </div>
+                          </div>
+                          
+                          <div className="bg-black/40 backdrop-blur-sm rounded-xl p-6 border border-gray-700/30">
+                            <p className="text-gray-200 text-base md:text-lg leading-relaxed mb-6">
+                              {item.content}
+                            </p>
+                            
+                            <div className="grid gap-3">
+                              {item.features.map((feature, idx) => (
+                                <div key={idx} className="flex items-center gap-3 text-gray-300">
+                                  <div className="w-2 h-2 bg-theme-blue rounded-full flex-shrink-0"></div>
+                                  <span className="text-sm md:text-base">{feature}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Visual Element */}
+                        <div className="hidden lg:block transform transition-all duration-700 translate-x-0 group-hover:translate-x-2">
+                          <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30">
+                            <div className="text-center">
+                              <div className="w-32 h-32 bg-theme-blue/20 rounded-2xl mx-auto mb-6 flex items-center justify-center border border-theme-blue/30">
+                                <item.icon className="w-16 h-16 text-theme-blue" />
+                              </div>
+                              <h4 className="text-white font-semibold text-xl mb-2">{item.title}</h4>
+                              <p className="text-gray-400 text-sm">Advanced Technology</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Content Section */}
-                    <div className="space-y-6 order-1 lg:order-2">
-                      <div className="bg-black/40 backdrop-blur-sm rounded-xl p-6 border border-gray-800/30">
-                        <p className="text-gray-300 text-base md:text-lg leading-relaxed">
-                          {item.content}
-                        </p>
-                      </div>
-                      
-                      {/* Features List */}
-                      <div className="grid gap-3">
-                        {item.id === "autonomous-charging" && (
-                          <>
-                            <div className="flex items-center gap-3 text-gray-300">
-                              <div className="w-2 h-2 bg-theme-blue rounded-full"></div>
-                              <span>Automatic battery level monitoring</span>
-                            </div>
-                            <div className="flex items-center gap-3 text-gray-300">
-                              <div className="w-2 h-2 bg-theme-blue rounded-full"></div>
-                              <span>Smart charging station navigation</span>
-                            </div>
-                            <div className="flex items-center gap-3 text-gray-300">
-                              <div className="w-2 h-2 bg-theme-blue rounded-full"></div>
-                              <span>Optimized charging schedules</span>
-                            </div>
-                          </>
-                        )}
-                        
-                        {item.id === "safety-assurance" && (
-                          <>
-                            <div className="flex items-center gap-3 text-gray-300">
-                              <div className="w-2 h-2 bg-theme-blue rounded-full"></div>
-                              <span>360° obstacle detection</span>
-                            </div>
-                            <div className="flex items-center gap-3 text-gray-300">
-                              <div className="w-2 h-2 bg-theme-blue rounded-full"></div>
-                              <span>Emergency stop protocols</span>
-                            </div>
-                            <div className="flex items-center gap-3 text-gray-300">
-                              <div className="w-2 h-2 bg-theme-blue rounded-full"></div>
-                              <span>Human-robot collaboration safety</span>
-                            </div>
-                          </>
-                        )}
-                        
-                        {item.id === "controller" && (
-                          <>
-                            <div className="flex items-center gap-3 text-gray-300">
-                              <div className="w-2 h-2 bg-theme-blue rounded-full"></div>
-                              <span>Real-time fleet monitoring</span>
-                            </div>
-                            <div className="flex items-center gap-3 text-gray-300">
-                              <div className="w-2 h-2 bg-theme-blue rounded-full"></div>
-                              <span>Predictive maintenance alerts</span>
-                            </div>
-                            <div className="flex items-center gap-3 text-gray-300">
-                              <div className="w-2 h-2 bg-theme-blue rounded-full"></div>
-                              <span>Advanced analytics dashboard</span>
-                            </div>
-                          </>
-                        )}
+                    {/* Slide Indicator */}
+                    <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
+                      <div className="bg-black/60 backdrop-blur-sm rounded-full px-4 py-2 border border-gray-700/30">
+                        <span className="text-white text-sm font-medium">
+                          {index + 1} / {carouselData.length}
+                        </span>
                       </div>
                     </div>
                   </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            
+            {/* Custom Navigation */}
+            <div className="flex justify-center mt-8 gap-4">
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-full border-theme-blue/30 bg-black/40 backdrop-blur-sm hover:bg-theme-blue/20 hover:border-theme-blue transition-all duration-300"
+                onClick={() => api?.scrollPrev()}
+              >
+                <ChevronLeft className="h-4 w-4 text-theme-blue" />
+              </Button>
+              
+              <div className="flex gap-2 items-center">
+                {carouselData.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      currentSlide === index 
+                        ? 'bg-theme-blue scale-125' 
+                        : 'bg-gray-600 hover:bg-gray-400'
+                    }`}
+                  />
+                ))}
+              </div>
+              
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-full border-theme-blue/30 bg-black/40 backdrop-blur-sm hover:bg-theme-blue/20 hover:border-theme-blue transition-all duration-300"
+                onClick={() => api?.scrollNext()}
+              >
+                <ChevronRight className="h-4 w-4 text-theme-blue" />
+              </Button>
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>
